@@ -343,8 +343,8 @@ test('NPS API key is a server-side provider in Power Up with safe save/remove an
   const value = 'privateNPS0123456789abcd';
   const check = validateKeySetupUpdates({ NPS_API_KEY: value });
   assert.deepEqual(check, { ok: true, updates: { NPS_API_KEY: value } });
-  assert.equal(upsertDotenvValues('NPS_API_KEY=\\n', check.updates), 'NPS_API_KEY=' + value + '\\n');
+  assert.equal(upsertDotenvValues('NPS_API_KEY=\n', check.updates), 'NPS_API_KEY=' + value + '\n');
   assert.equal(keySetupStatus({ NPS_API_KEY: value }).keys.find((entry) => entry.id === 'nps').set, true);
   assert.ok(!JSON.stringify(keySetupStatus({ NPS_API_KEY: value })).includes(value));
-  assert.equal(upsertDotenvValues('NPS_API_KEY=' + value + '\\n', { NPS_API_KEY: null }), '# NPS_API_KEY=\\n');
+  assert.equal(upsertDotenvValues('NPS_API_KEY=' + value + '\n', { NPS_API_KEY: null }), '# NPS_API_KEY=\n');
 });
