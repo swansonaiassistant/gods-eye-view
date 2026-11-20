@@ -2594,6 +2594,10 @@ Replay transport uses one Play/Pause toggle plus Cancel. During ascent only the 
   with an OWNER-RUN tag rather than failed. Run with `--list` to print the
   manual checks it cannot automate.
 
+## NPS People & Places research panel (draft PR #10)
+
+- **NPS People & Places (draft PR #10):** opt-in park-filtered research panel and server-only API proxy. NPS requires an owner-provided free API key; without `NPS_API_KEY`, the panel shows unavailable. People are list cards only; only eligible NPS-supplied place points can be shown. Live source and browser validation remain pending a key.
+
 ## Maintenance Rule
 
 When runtime behavior or architecture changes, update this file in the same change set as code updates.
