@@ -1580,6 +1580,7 @@ Historical planning documents may not match runtime behavior.
 - Voice map whiteboard annotations in `src/annotations/`
 - Opt-in Black Hills historic rail video research panel: one verified outbound YouTube link, three unsourced prompts, no geographic pins or hosted footage
 - Opt-in Black Hills 1857–1877 historical research panel with outbound source links; no route vectors, camps, or sensitive-site pins
+- Opt-in Black Hills historic railway overlay from OSM abandoned/disused/razed ways through the bounded same-origin Overpass proxy; mapped coverage is incomplete and unavailable sources stay labeled
 - 3D aircraft/model tracking surfaces in `src/data/flights.js` and `src/data/militaryFlights.js`
 - Detection overlay and tracked-target readout in `src/data/detection.js`, `src/data/detectionDraw.js`, and `src/data/trackedReadout.js`
 - Proxy middleware and API wiring in `vite.config.js`

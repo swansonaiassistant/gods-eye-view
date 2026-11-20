@@ -4,10 +4,9 @@ import { overpassWaysToRailGeoJSON, BLACK_HILLS_BBOX } from './blackHillsRailroa
 
 // Only historical OSM railway geometries are displayed. These are NOT a
 // transcription of any third-party custom map or an authoritative survey.
-const ENDPOINTS = [
-  'https://overpass.kumi.systems/api/interpreter',
-  'https://overpass-api.de/api/interpreter',
-];
+// Reuse the app's bounded, cached, same-origin proxy. It handles upstream
+// mirror failover and avoids direct browser CORS/preflight failures.
+const ENDPOINTS = ['/api/overpass'];
 const QUERY = `[out:json][timeout:35];way["railway"~"^(abandoned|disused|razed)$"](${BLACK_HILLS_BBOX});out geom;`;
 const state = { viewer: null, source: null, enabled: false, controller: null,
   count: 0, lastUpdate: null, error: null, loading: false, generation: 0 };
@@ -27,7 +26,7 @@ async function loadRailways() {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
           body: new URLSearchParams({ data: QUERY }),
-          signal: AbortSignal.any([controller.signal, AbortSignal.timeout(45000)]),
+          signal: AbortSignal.any([controller.signal, AbortSignal.timeout(100000)]),
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const raw = await response.json();

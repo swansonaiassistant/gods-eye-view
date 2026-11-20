@@ -13,8 +13,9 @@ OpenStreetMap coverage is incomplete and community-mapped geometries are not
 survey-verified. Do not infer that an empty area has no historic track, that a
 route remains passable, or that a highlighted line is publicly accessible.
 
-The overlay is opt-in, uses live Overpass queries on enable, is cached for the
-current page session, and does not poll continuously. If Overpass is
+The overlay is opt-in, uses the existing bounded same-origin Overpass proxy
+with mirror failover and cache on enable, is also cached for the current page
+session, and does not poll continuously. If Overpass is
 unavailable, the layer must report UNAVAILABLE, not invent a route. Historical
 overlay lines are visual context, not driving/hiking directions.
 

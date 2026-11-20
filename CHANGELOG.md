@@ -7,6 +7,7 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 
 ### Added
 
+- An opt-in Black Hills historic railway overlay from community-mapped OSM tags through the app's bounded Overpass proxy; unavailable sources remain labeled, and no custom map geometry is reproduced.
 - An opt-in sourced Black Hills 1857–1877 research timeline panel; no expedition route, camp, or sensitive-site coordinates are drawn.
 - An opt-in Black Hills historic rail video research panel with one verified outbound Signal Rock YouTube link and three clearly unsourced research prompts. No footage is copied or geotagged.
 
