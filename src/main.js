@@ -15,6 +15,7 @@ import aisLiveVesselsLayer from './data/aisLiveVessels.js';
 import militaryInstallationsLayer from './data/militaryInstallations.js';
 import militaryAwarenessLayer from './data/militaryAwareness.js';
 import localDataLayers from './data/localLayers.js';
+import blackHillsRailroadsLayer from './data/blackHillsRailroads.js';
 import { rapidCityPoliceCallsLayer, penningtonCountyCallsLayer } from './data/publicCallLogs.js';
 import { initPublicCallLogPanel } from './data/publicCallLogsUi.js';
 import { LAYER_STATE_REGISTRY } from './data/layerState.js';
@@ -230,6 +231,7 @@ async function init() {
     dataManager.register(rapidCityPoliceCallsLayer);
     dataManager.register(penningtonCountyCallsLayer);
     militaryAwarenessLayer.attachDataManager(dataManager);
+    dataManager.register(blackHillsRailroadsLayer);
     for (const layer of localDataLayers) {
       dataManager.register(layer);
     }

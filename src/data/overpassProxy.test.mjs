@@ -11,8 +11,19 @@ import assert from 'node:assert/strict';
 import {
   simplifyOverpassPayloadBody,
   isOverpassBoundaryQuery,
+  overpassUpstreamsForBody,
   resolveOverpassPreflight,
 } from '../../vite.config.js';
+
+test('historic rail gets the keyless North America source and bounded fallback without rerouting other queries', () => {
+  const rail = new URLSearchParams({ data: '[out:json][timeout:30];way["railway"~"^(abandoned|disused|razed)$"](43.65,-104.35,44.85,-102.90);out geom;' }).toString();
+  const endpoints = overpassUpstreamsForBody(rail);
+  assert.equal(endpoints[0], 'https://ovp.dresel.systems/api-na/interpreter');
+  assert.equal(endpoints.length, 3);
+  assert.ok(endpoints.every((endpoint) => endpoint.startsWith('https://')));
+  const traffic = new URLSearchParams({ data: '[out:json];way["highway"](43.9,-104.1,44.0,-104.0);out geom;' }).toString();
+  assert.equal(overpassUpstreamsForBody(traffic)[0], 'https://overpass-api.de/api/interpreter');
+});
 
 test('preflight checks memory, in-flight, then disk before consuming limiter quota', async () => {
   const key = 'normalized query';

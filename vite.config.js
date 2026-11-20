@@ -189,6 +189,15 @@ const OPENSKY_SOURCE_STALE_MS = 120_000;
 // Overpass API proxy constants and cache state
 // ---------------------------------------------------------------------------
 /** Ordered list of Overpass API mirrors; tried sequentially on failure/rate-limit. */
+// The privately operated North America endpoint explicitly permits free, keyless
+// public queries with ODbL attribution and a four-request-per-IP cap. Give only
+// the opt-in historic rail query this additional first choice; the rest of the
+// app keeps its established mirror order and rate limits.
+const HISTORIC_RAIL_UPSTREAMS = [
+  'https://ovp.dresel.systems/api-na/interpreter',
+  'https://overpass.private.coffee/api/interpreter',
+  'https://overpass-api.de/api/interpreter',
+];
 const OVERPASS_UPSTREAMS = [
   'https://overpass-api.de/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
@@ -2559,11 +2568,17 @@ function sendOverpassResponse(res, payload, cacheStatus = 'MISS') {
  * @param {number} [maxResponseBytes] Endpoint-specific response cap.
  * @returns {Promise<{status:number,body:string,contentType:string,endpoint:string,rateLimited:boolean}>}
  */
+export function overpassUpstreamsForBody(body) {
+  const query = new URLSearchParams(body).get('data') || '';
+  return query.includes('way["railway"~"^(abandoned|disused|razed)$"]')
+    ? HISTORIC_RAIL_UPSTREAMS : OVERPASS_UPSTREAMS;
+}
+
 async function fetchOverpassPayload(body, maxResponseBytes = OVERPASS_MAX_RESPONSE_BYTES) {
   let lastError = null;
   let lastRateLimitPayload = null;
 
-  for (const endpoint of OVERPASS_UPSTREAMS) {
+  for (const endpoint of overpassUpstreamsForBody(body)) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), OVERPASS_TIMEOUT_MS);
 
