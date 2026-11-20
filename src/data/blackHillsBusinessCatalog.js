@@ -69,7 +69,9 @@ export function normalizeBusinessPlace(place, source = 'overture') {
   const names = place.names;
   const name = safeText(typeof names?.primary === 'string' ? names.primary : place.name);
   if (!name) return null;
-  const sourceCategories = place.categories || [];
+  const sourceCategories = Array.isArray(place.categories)
+    ? place.categories
+    : [place.categories?.primary, ...(Array.isArray(place.categories?.alternate) ? place.categories.alternate : [])].filter(Boolean);
   const category = categorizeBusiness(sourceCategories);
   if (!CATEGORY_SET.has(category)) return null;
   return {
