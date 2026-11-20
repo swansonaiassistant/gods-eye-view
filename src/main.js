@@ -16,6 +16,7 @@ import militaryInstallationsLayer from './data/militaryInstallations.js';
 import militaryAwarenessLayer from './data/militaryAwareness.js';
 import localDataLayers from './data/localLayers.js';
 import { rapidCityPoliceCallsLayer, penningtonCountyCallsLayer } from './data/publicCallLogs.js';
+import { initPublicCallLogPanel } from './data/publicCallLogsUi.js';
 import { LAYER_STATE_REGISTRY } from './data/layerState.js';
 import { registerDataCredits } from './data/dataCredits.js';
 import { SceneDirector } from './scenes/director.js';
@@ -240,6 +241,7 @@ async function init() {
       };
     }
     dataManager.buildTogglePanel(document.getElementById('data-toggles'));
+    initPublicCallLogPanel(dataManager, { rapidCity: rapidCityPoliceCallsLayer, pennington: penningtonCountyCallsLayer });
     styleManager.attachDataManager(dataManager);
 
     // Initialize deterministic scene playback for social clip capture
