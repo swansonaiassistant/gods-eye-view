@@ -19,10 +19,10 @@ export function initNpsPeoplePlacesPanel(viewer, doc = document, { fetchProfiles
   const button = doc.createElement('button');
   button.type = 'button'; button.textContent = 'NPS PEOPLE & PLACES';
   button.setAttribute('aria-controls', 'gev-nps-people-places'); button.setAttribute('aria-expanded', 'false');
-  button.style.cssText = 'position:fixed;right:16px;bottom:158px;z-index:109;background:#14232c;color:#fff;border:1px solid #d9b76a;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
+  button.style.cssText = 'position:fixed;right:148px;bottom:160px;z-index:109;background:#14232c;color:#fff;border:1px solid #d9b76a;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
   const panel = doc.createElement('aside'); panel.id = 'gev-nps-people-places'; panel.hidden = true;
   panel.setAttribute('data-gev-research-panel', ''); panel.setAttribute('aria-label', 'National Park Service people and places');
-  panel.style.cssText = 'position:fixed;right:16px;bottom:202px;z-index:109;width:min(430px,calc(100vw - 32px));max-height:50vh;overflow:auto;background:#10202bf2;color:#fff;border:1px solid #d9b76a;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
+  panel.style.cssText = 'position:fixed;right:16px;bottom:204px;z-index:109;width:min(430px,calc(100vw - 32px));max-height:50vh;overflow:auto;background:#10202bf2;color:#fff;border:1px solid #d9b76a;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
   const heading = doc.createElement('h2'); heading.textContent = 'NPS People & Places'; heading.style.cssText = 'font-size:16px;margin:0 0 6px';
   const caveat = doc.createElement('p'); caveat.textContent = 'Official editorial profiles, not live tracking. Only NPS-supplied, public place points can appear on the globe; they do not establish site boundaries or current access. People are listed without map pins.';
   const controls = doc.createElement('div'); controls.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap';
