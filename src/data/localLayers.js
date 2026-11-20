@@ -1,6 +1,7 @@
 import { createLocalGeoJsonLayer } from './localGeojson.js';
 import { createFirmsHeatmapLayer } from './firmsHeatmap.js';
 import submarineCablesLayer from './telegeographySubmarineCables.js';
+import blackHillsWildfireLayer from './blackHillsWildfireLayer.js';
 
 // Use Vite's ?url import to properly resolve these assets in dev and build
 import datacentersUrl from './local_data/datacenters/datacenters.geojsonl?url';
@@ -49,4 +50,5 @@ export default [
   dams,
   submarineCablesLayer,
   fires,
+  blackHillsWildfireLayer,
 ];

@@ -1,6 +1,14 @@
 # God's Eye View Current State
 
-Updated: August 24, 2026
+> **Black Hills reported fire incidents (November 2026).** The opt-in layer
+> queries the current public NIFC-owned wildfire point service in a
+> bounded Black Hills study area every 15 minutes while enabled. It is separate
+> from NASA FIRMS heat detections, includes prescribed fires and complexes,
+> and does not show perimeters or fire fronts. Valid empty responses show zero;
+> outages show unavailable or stale prior points. The source is attributed in
+> the Data attribution popover; it is not evacuation guidance.
+
+Updated: November 19, 2026
 
 > **2026-08-23 — first-run mission launcher** (`src/firstRunExperience.js`,
 > `#first-run-launcher`, styles at the tail of `style.css`). After startup
@@ -1581,6 +1589,7 @@ Historical planning documents may not match runtime behavior.
 - Opt-in Black Hills historic rail video research panel: one verified outbound YouTube link, three unsourced prompts, no geographic pins or hosted footage
 - Opt-in Black Hills 1857–1877 historical research panel with outbound source links; no route vectors, camps, or sensitive-site pins
 - Opt-in Black Hills historic railway overlay from OSM abandoned/disused/razed ways through the bounded same-origin Overpass proxy; mapped coverage is incomplete and unavailable sources stay labeled
+- Opt-in Black Hills LiDAR discovery panel queries USGS 3DEP published point-cloud work units in a broad SD/WY study envelope, renders work-unit polygons, and lists collection/quality/publication metadata. It does not calculate a Black Hills coverage percentage or stream point clouds; source failures display unavailable or stale.
 - 3D aircraft/model tracking surfaces in `src/data/flights.js` and `src/data/militaryFlights.js`
 - Detection overlay and tracked-target readout in `src/data/detection.js`, `src/data/detectionDraw.js`, and `src/data/trackedReadout.js`
 - Proxy middleware and API wiring in `vite.config.js`

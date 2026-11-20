@@ -39,6 +39,7 @@ import { installScopeMask } from './scopeMask.js';
 import { initFirstRunExperience } from './firstRunExperience.js';
 import { initKeySetup } from './keySetup.js';
 import { loadPhotorealisticTileset } from './mapStartup.js';
+import { initBlackHillsLidarPanel } from './data/blackHillsLidarPanel.js';
 
 initLogoGaze();
 
@@ -249,6 +250,7 @@ async function init() {
     initBlackHillsVideoArchive();
     initBlackHillsExpeditionsPanel();
     styleManager.attachDataManager(dataManager);
+    initBlackHillsLidarPanel(viewer);
 
     // Initialize deterministic scene playback for social clip capture
     const sceneDirector = new SceneDirector(viewer, styleManager, dataManager);

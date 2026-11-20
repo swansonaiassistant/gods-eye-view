@@ -1,0 +1,11 @@
+# RapidMap GIS query foundation
+
+Official Rapid City/Pennington GIS ArcGIS REST: https://gis.rcgov.org/server/rest/services/PublicSites/PublicRapidMap/MapServer . Public layers verified from the service listing: Roads=4, 2023 MPO 1-foot contours=10, Parcels=40, City Boundaries=47. `src/data/rapidMapSource.js` builds regional, bounded GeoJSON queries requesting WGS84 output. It requests only `OBJECTID` attributes, not all public parcel metadata, and supports deterministic `OBJECTID` pagination with a maximum of 500 features per page and 10,000 records of offset.
+
+The official roads query returned real GeoJSON geometry in a bounded Rapid City extent; its second page returned the next `OBJECTID`. The response allowed the local browser origin `http://localhost:4173`. These checks establish query shape and CORS at that time, not a shipped browser layer. `exceededTransferLimit` can be true, so a future adapter must page until complete or clearly label a partial result. Roads, parcel outlines, contours, and boundaries are **not rendered in the globe by this PR**.
+
+GIS disclaimer: geographic reference data, **not legal parcel boundaries**. The city's indexed [RapidMap information page](https://www.rcgov.org/departments/public-works/geographic-information-system/rapidmap-214.html) says data loads weekday mornings from 6–7am Mountain Time, but direct access returned HTTP 403 here, so current cadence could not be rechecked. Its [GIS Data page](https://www.rcgov.org/departments/public-works/geographic-information-system/gis-data-216.html) allows distribution of **printed maps** with legible City credit; that statement does not establish digital redistribution rights. Before enabling runtime ingestion, verify current digital-use terms and attribution, then cache/simplify by camera extent, cap total pages and geometry, render selectable layers with source and boundary notices, and test Cesium performance. No downloaded features or map reproductions are committed here.
+
+## Merge acceptance
+
+For this query-builder foundation: verify the official layer IDs, a bounded GeoJSON response, CORS, paging, minimum fields, invalid-input handling, unit tests, and build. Browser rendering and any required source-use permission are separate follow-up gates; do not claim this PR provides a live GIS layer. This work is isolated from LifeOS.
