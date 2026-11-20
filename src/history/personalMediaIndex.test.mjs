@@ -28,3 +28,10 @@ test('viewport queries enforce finite bounds and a bounded page size', () => {
   assert.equal(query.has('cursor'), false);
   assert.equal(personalMediaViewportQuery({ south: 44, north: 43, west: -103.7, east: -103.1 }), null);
 });
+
+test('capture times require an explicit offset so host timezone cannot change their meaning', () => {
+  const base = { id: 'media_12345678', kind: 'photo',
+    location: { latitude: 44, longitude: -103, source: 'exif-gps', confidence: 'precise' } };
+  assert.equal(normalizeMediaMapRecord({ ...base, capturedAt: '2020-07-01T12:00:00' }).capturedAt, null);
+  assert.equal(normalizeMediaMapRecord({ ...base, capturedAt: '2020-07-01T12:00:00-06:00' }).capturedAt, '2020-07-01T18:00:00.000Z');
+});

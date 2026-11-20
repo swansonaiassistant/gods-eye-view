@@ -14,7 +14,7 @@ function inRange(value, min, max) {
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max;
 }
 
-/** Reject invalid geographic inputs rather than plotting media at 0,0. */
+/** Reject invalid or missing geographic inputs rather than inventing a map pin. */
 export function normalizeMediaLocation(candidate) {
   if (!candidate || typeof candidate !== 'object') return null;
   if (!inRange(candidate.latitude, -90, 90) || !inRange(candidate.longitude, -180, 180)) return null;
@@ -33,7 +33,7 @@ export function normalizeMediaLocation(candidate) {
 }
 
 function safeIso(value) {
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(value)) return null;
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2})$/.test(value)) return null;
   const parsed = Date.parse(value);
   return Number.isFinite(parsed) ? new Date(parsed).toISOString() : null;
 }
