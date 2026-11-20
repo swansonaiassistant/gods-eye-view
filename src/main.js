@@ -16,12 +16,16 @@ import militaryInstallationsLayer from './data/militaryInstallations.js';
 import militaryAwarenessLayer from './data/militaryAwareness.js';
 import localDataLayers from './data/localLayers.js';
 import blackHillsRailroadsLayer from './data/blackHillsRailroads.js';
+import { rapidCityPoliceCallsLayer, penningtonCountyCallsLayer } from './data/publicCallLogs.js';
+import { initPublicCallLogPanel } from './data/publicCallLogsUi.js';
 import { LAYER_STATE_REGISTRY } from './data/layerState.js';
 import { registerDataCredits } from './data/dataCredits.js';
 import { SceneDirector } from './scenes/director.js';
 import { initGevVoiceCommands } from './voice/gevRealtime.js';
 import { MapStackController } from './mapStackController.js';
 import { initAnnotations } from './annotations/index.js';
+import { initBlackHillsExpeditionsPanel } from './history/blackHillsExpeditionsPanel.js';
+import { initBlackHillsVideoArchive } from './history/blackHillsVideoArchive.js';
 import { initLogoGaze } from './logoGaze.js';
 import { initCockpitCloudEffects } from './cockpitCloudEffects.js';
 import {
@@ -221,6 +225,8 @@ async function init() {
     dataManager.register(aisLiveVesselsLayer);
     dataManager.register(militaryInstallationsLayer);
     dataManager.register(militaryAwarenessLayer);
+    dataManager.register(rapidCityPoliceCallsLayer);
+    dataManager.register(penningtonCountyCallsLayer);
     militaryAwarenessLayer.attachDataManager(dataManager);
     dataManager.register(blackHillsRailroadsLayer);
     for (const layer of localDataLayers) {
@@ -239,6 +245,9 @@ async function init() {
       };
     }
     dataManager.buildTogglePanel(document.getElementById('data-toggles'));
+    initPublicCallLogPanel(dataManager, { rapidCity: rapidCityPoliceCallsLayer, pennington: penningtonCountyCallsLayer });
+    initBlackHillsVideoArchive();
+    initBlackHillsExpeditionsPanel();
     styleManager.attachDataManager(dataManager);
 
     // Initialize deterministic scene playback for social clip capture

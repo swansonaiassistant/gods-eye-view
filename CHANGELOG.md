@@ -5,6 +5,11 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 
 ## [Unreleased]
 
+### Added
+
+- An opt-in sourced Black Hills 1857–1877 research timeline panel; no expedition route, camp, or sensitive-site coordinates are drawn.
+- An opt-in Black Hills historic rail video research panel with one verified outbound Signal Rock YouTube link and three clearly unsourced research prompts. No footage is copied or geotagged.
+
 ## [0.1.1] — 2026-09-01 — Installation and live-data fixes
 
 ### Changed
