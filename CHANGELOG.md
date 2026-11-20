@@ -5,6 +5,10 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 
 ## [Unreleased]
 
+### Added
+
+- An opt-in Black Hills historic rail video research panel with one verified outbound Signal Rock YouTube link and three clearly unsourced research prompts. No footage is copied or geotagged.
+
 ## [0.1.1] — 2026-09-01 — Installation and live-data fixes
 
 ### Changed
