@@ -14,7 +14,7 @@
 /** Longest accepted key/token value. Real provider keys are all far shorter. */
 export const KEY_SETUP_VALUE_LIMIT = 512;
 
-/** Most env vars accepted in one save. The registry defines nine. */
+/** Most env vars accepted in one save. The registry defines the allowed keys. */
 export const KEY_SETUP_UPDATE_LIMIT = 16;
 
 /** Header line written above keys the panel appends to a .env file. */
@@ -84,6 +84,14 @@ export const KEY_SETUP_KEYS = Object.freeze([
     unlocks: 'More flight-polling credits (anonymous works without)',
     getUrl: 'https://opensky-network.org',
     envVars: Object.freeze(['OPENSKY_CLIENT_ID', 'OPENSKY_CLIENT_SECRET']),
+    tier: 'free',
+  }),
+  Object.freeze({
+    id: 'nps',
+    title: 'NATIONAL PARK SERVICE',
+    unlocks: 'Black Hills People & Places — live NPS park and history records',
+    getUrl: 'https://www.nps.gov/subjects/developer/get-started.htm',
+    envVars: Object.freeze(['NPS_API_KEY']),
     tier: 'free',
   }),
   Object.freeze({
