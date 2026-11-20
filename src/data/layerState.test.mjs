@@ -228,8 +228,8 @@ test('v2 codec distinguishes absent from empty and keeps canonical deterministic
 });
 
 test('unknown enabled-layer tokens reject the payload instead of becoming an empty set', () => {
-  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=k')), null);
-  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=c.k')), null);
+  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=o')), null);
+  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=c.o')), null);
 });
 
 test('unknown and forbidden option fields are ignored while missing options use codec defaults', () => {
