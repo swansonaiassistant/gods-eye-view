@@ -40,6 +40,8 @@ import { initFirstRunExperience } from './firstRunExperience.js';
 import { initKeySetup } from './keySetup.js';
 import { loadPhotorealisticTileset } from './mapStartup.js';
 import { initBlackHillsLidarPanel } from './data/blackHillsLidarPanel.js';
+import sd511Layer from './data/sd511Layer.js';
+import { initSd511Panel } from './data/sd511Panel.js';
 
 initLogoGaze();
 
@@ -251,6 +253,7 @@ async function init() {
     initBlackHillsExpeditionsPanel();
     styleManager.attachDataManager(dataManager);
     initBlackHillsLidarPanel(viewer);
+    initSd511Panel(viewer, dataManager, sd511Layer);
 
     // Initialize deterministic scene playback for social clip capture
     const sceneDirector = new SceneDirector(viewer, styleManager, dataManager);

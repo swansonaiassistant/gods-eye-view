@@ -28,6 +28,10 @@ import * as Cesium from 'cesium';
 export const DATA_CREDITS = [
   // ── Live sources ────────────────────────────────────────────────
   {
+    key: 'south-dakota-511',
+    html: 'Road reports: <a href="https://www.sd511.org/" target="_blank" rel="noopener">South Dakota DOT / SD511</a> (official route endpoints; source may lag)',
+  },
+  {
     key: 'black-hills-wildfires',
     html:
       'Black Hills reported fire incidents: ' +
