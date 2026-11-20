@@ -21,6 +21,7 @@ import { SceneDirector } from './scenes/director.js';
 import { initGevVoiceCommands } from './voice/gevRealtime.js';
 import { MapStackController } from './mapStackController.js';
 import { initAnnotations } from './annotations/index.js';
+import { initBlackHillsExpeditionsPanel } from './history/blackHillsExpeditionsPanel.js';
 import { initLogoGaze } from './logoGaze.js';
 import { initCockpitCloudEffects } from './cockpitCloudEffects.js';
 import {
@@ -237,6 +238,7 @@ async function init() {
       };
     }
     dataManager.buildTogglePanel(document.getElementById('data-toggles'));
+    initBlackHillsExpeditionsPanel();
     styleManager.attachDataManager(dataManager);
 
     // Initialize deterministic scene playback for social clip capture
