@@ -26,6 +26,7 @@ test('upstream audit reports local drift without changing the checkout or exposi
     git(cwd, 'update-ref', 'refs/remotes/upstream/main', base);
     git(cwd, 'remote', 'add', 'origin', 'https://user:secret@example.test/repo.git');
     git(cwd, 'remote', 'add', 'upstream', 'https://example.test/upstream.git');
+    git(cwd, 'remote', 'add', 'sensitive', 'ssh://user:otherSecret@example.test/private.git?token=querySecret#fragmentSecret');
     writeFileSync(path.join(cwd, 'tracked.txt'), 'changed\n');
 
     const before = git(cwd, 'status', '--porcelain=v1');
@@ -36,8 +37,8 @@ test('upstream audit reports local drift without changing the checkout or exposi
     assert.equal(report.drift, '0\t0');
     assert.equal(report.origin, base);
     assert.equal(report.upstream, base);
-    assert.match(report.remotes, /\[redacted\]@example\.test/);
-    assert.doesNotMatch(result.stdout, /secret/);
+    assert.equal(report.remotes, 'origin\nsensitive\nupstream');
+    assert.doesNotMatch(result.stdout, /secret|example\.test|private\.git/i);
     assert.equal(report.localChanges, before);
     assert.equal(git(cwd, 'status', '--porcelain=v1'), before);
     assert.equal(git(cwd, 'rev-parse', 'HEAD'), base);

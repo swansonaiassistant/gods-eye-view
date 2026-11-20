@@ -5,12 +5,10 @@ function git(...args) {
   try { return execFileSync('git', args, { encoding: 'utf8', timeout: 15000, stdio: ['ignore', 'pipe', 'pipe'] }).trim(); }
   catch (error) { return { error: String(error.message || error) }; }
 }
-function redactRemoteCredentials(remotes) {
-  if (typeof remotes !== 'string') return remotes;
-  return remotes.replace(/(https?:\/\/)[^\s/@]+@/gi, '$1[redacted]@');
-}
 export function auditUpstream() {
-  const remotes = redactRemoteCredentials(git('remote', '-v'));
+  // Names are enough to verify configuration without printing credentials,
+  // private hosts, URL query parameters, or fragments from remote URLs.
+  const remotes = git('remote');
   const branch = git('branch', '--show-current');
   const status = git('status', '--porcelain=v1');
   const upstream = git('rev-parse', '--verify', 'upstream/main');

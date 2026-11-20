@@ -1,6 +1,6 @@
 # Upstream drift audit
 
-Run `node scripts/audit-upstream.mjs` from a checkout after verifying and fetching the `origin` and `upstream` remotes. The helper reports the current branch, worktree changes, remote URLs, local main refs, and the commit counts in `origin/main...upstream/main`. It never fetches, merges, resets or alters settings. Embedded HTTPS credentials in remote URLs are redacted. The command exits nonzero when a Git command or required ref is unavailable; its output then records the missing evidence.
+Run `node scripts/audit-upstream.mjs` from a checkout after verifying and fetching the `origin` and `upstream` remotes. The helper reports the current branch, worktree changes, remote names, local main refs, and the commit counts in `origin/main...upstream/main`. It never fetches, merges, resets or alters settings. It deliberately does not print remote URLs, which may contain credentials or private metadata. Verify the remote targets separately before fetching. The command exits nonzero when a Git command or required ref is unavailable; its output then records the missing evidence.
 
 Reference: https://github.com/bilawalsidhu/gods-eye-view
 
