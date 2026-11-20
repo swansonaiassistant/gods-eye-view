@@ -28,6 +28,13 @@ import * as Cesium from 'cesium';
 export const DATA_CREDITS = [
   // ── Live sources ────────────────────────────────────────────────
   {
+    key: 'black-hills-wildfires',
+    html:
+      'Black Hills reported fire incidents: ' +
+      '<a href="https://www.arcgis.com/home/item.html?id=4181a117dc9e43db8598533e29972015" target="_blank" rel="noopener">' +
+      'NIFC / US DOI Office of Wildland Fire / IRWIN</a> (reported points; may lag conditions)',
+  },
+  {
     key: 'opensky',
     html:
       'Flights: OpenSky Network — Schäfer et al., ' +
