@@ -62,16 +62,28 @@ function safeText(value, max = 160) {
  */
 export function normalizeBusinessPlace(place, source = 'overture') {
   if (!place || !['overture', 'openstreetmap'].includes(source)) return null;
-  const [lon, lat] = place.geometry?.coordinates || [];
+  const coordinates = place.geometry?.coordinates;
+  if (!Array.isArray(coordinates) || coordinates.length !== 2) return null;
+  const [lon, lat] = coordinates;
   if (place.geometry?.type !== 'Point' || !withinBlackHillsRegion(lat, lon)) return null;
   const rawId = String(place.id ?? '');
   if (!/^[A-Za-z0-9_:-]{1,160}$/.test(rawId)) return null;
   const names = place.names;
   const name = safeText(typeof names?.primary === 'string' ? names.primary : place.name);
   if (!name) return null;
-  const sourceCategories = Array.isArray(place.categories)
-    ? place.categories
-    : [place.categories?.primary, ...(Array.isArray(place.categories?.alternate) ? place.categories.alternate : [])].filter(Boolean);
+  // Overture removed `categories` in September 2026. Prefer its current
+  // taxonomy while accepting older release-pinned extracts and OSM imports.
+  const taxonomy = place.taxonomy;
+  const sourceCategories = [
+    taxonomy?.primary,
+    ...(Array.isArray(taxonomy?.hierarchy) ? taxonomy.hierarchy : []),
+    ...(Array.isArray(taxonomy?.alternates) ? taxonomy.alternates : []),
+    place.basic_category,
+    ...(Array.isArray(place.categories) ? place.categories : [
+      place.categories?.primary,
+      ...(Array.isArray(place.categories?.alternate) ? place.categories.alternate : []),
+    ]),
+  ].filter((value) => typeof value === 'string' && value);
   const category = categorizeBusiness(sourceCategories);
   if (!CATEGORY_SET.has(category)) return null;
   return {
@@ -91,7 +103,17 @@ export function businessViewportQuery(bounds, { limit = 150, category = 'all' } 
   if (!bounds || ![bounds.south, bounds.north, bounds.west, bounds.east].every(Number.isFinite)
     || bounds.south >= bounds.north || bounds.west >= bounds.east
     || bounds.south < -90 || bounds.north > 90 || bounds.west < -180 || bounds.east > 180) return null;
+  if (bounds.north <= BLACK_HILLS_BUSINESS_REGION.south
+    || bounds.south >= BLACK_HILLS_BUSINESS_REGION.north
+    || bounds.east <= BLACK_HILLS_BUSINESS_REGION.west
+    || bounds.west >= BLACK_HILLS_BUSINESS_REGION.east) return null;
   if (category !== 'all' && !CATEGORY_SET.has(category)) return null;
   const count = Number.isInteger(limit) ? Math.min(300, Math.max(1, limit)) : 150;
-  return { ...bounds, limit: count, category };
+  return {
+    south: Math.max(bounds.south, BLACK_HILLS_BUSINESS_REGION.south),
+    north: Math.min(bounds.north, BLACK_HILLS_BUSINESS_REGION.north),
+    west: Math.max(bounds.west, BLACK_HILLS_BUSINESS_REGION.west),
+    east: Math.min(bounds.east, BLACK_HILLS_BUSINESS_REGION.east),
+    limit: count, category,
+  };
 }

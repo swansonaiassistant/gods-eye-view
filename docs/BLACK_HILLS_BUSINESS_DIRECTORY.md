@@ -24,6 +24,9 @@ Filter extracted data by a reviewed regional polygon later if appropriate.
    release from the official dataset, regional spatial-filtered extraction,
    license assessment for each imported dataset and attribution. Inspect actual
    schema and confidence/category availability before implementing import.
+   Current releases use `taxonomy` and `basic_category`; `categories` was
+   removed in September 2026. The normalizer accepts both schema generations,
+   but a release-pinned extract still needs field-level validation.
 2. **OpenStreetMap**: supplemental places, especially small settlements and
    mapped amenities. If combining/mixing with Overture, assess ODbL share-alike
    obligations and preserve independent source attribution.
