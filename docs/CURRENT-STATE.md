@@ -1,5 +1,7 @@
 # God's Eye View Current State
 
+> **South Dakota 511 public reports (November 2026).** The opt-in layer reads the state-provided XML ZIP through a fixed same-origin proxy, with five-minute layer refresh and a 60-second server cache. It shows official route start/end pins and category filters for conditions, construction, closures, events, and restrictions; pins do not trace road paths. The feed contains no camera records, so the panel links to the official SD511 map. Report/update times remain distinct from feed retrieval time. Source outage shows stale retained records or unavailable on a cold load.
+
 > **Black Hills reported fire incidents (November 2026).** The opt-in layer
 > queries the current public NIFC-owned wildfire point service in a
 > bounded Black Hills study area every 15 minutes while enabled. It is separate

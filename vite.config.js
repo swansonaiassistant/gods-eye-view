@@ -55,6 +55,7 @@ import {
 import { normalizeAdsbLolPointResponse } from './src/data/adsbLolFallback.js';
 import { createAisStreamAdapter, isRecognizedAisEnvelope } from './src/data/aisStreamAdapter.js';
 import { parseSilenceTimeoutEnv } from './src/data/aisWatchdog.js';
+import { extractSd511Xml } from './src/server/sd511Zip.mjs';
 import { keylessHudSummaryResponse } from './src/hudSummaryResponse.js';
 import { parseEnv as parseDotenvText } from 'node:util';
 import { readEnvironmentSource as readPinokioEnvironmentSource } from './scripts/pinokio-environment.mjs';
@@ -7658,6 +7659,60 @@ function keySetupEndpoint() {
   };
 }
 
+/** Same-origin access to the fixed, publicly documented South Dakota 511 XML ZIP. */
+function sd511Proxy() {
+  const url = 'https://sd.cdn.iteris-atis.com/xml/511.zip';
+  let cache = null;
+  let inFlight = null;
+  async function fetchXml() {
+    const response = await fetch(url, { signal: AbortSignal.timeout(12_000) });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const reader = response.body?.getReader();
+    if (!reader) throw new Error('SD511 feed body missing');
+    const chunks = [];
+    let total = 0;
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        total += value.byteLength;
+        if (total > 512_000) throw new Error('SD511 feed exceeds size limit');
+        chunks.push(value);
+      }
+    } finally { reader.releaseLock(); }
+    return extractSd511Xml(Buffer.concat(chunks.map((chunk) => Buffer.from(chunk))));
+  }
+  function install(middlewares) {
+    middlewares.use('/api/sd511', async (req, res) => {
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-store');
+      if (req.method !== 'GET' || req.url !== '/') {
+        res.statusCode = 405; res.end('Method not allowed'); return;
+      }
+      let stale = false;
+      if (!cache || Date.now() - cache.retrievedAt > 60_000) {
+        try {
+          inFlight ||= fetchXml().then((xml) => ({ xml, retrievedAt: Date.now() }));
+          cache = await inFlight;
+        } catch (error) {
+          if (!cache || Date.now() - cache.retrievedAt > 30 * 60_000) {
+            res.statusCode = 503;
+            res.end('South Dakota 511 feed unavailable');
+            return;
+          }
+          stale = true;
+          console.warn('[sd511-proxy] serving stale public feed:', error?.message || error);
+        } finally { inFlight = null; }
+      }
+      res.setHeader('X-GEV-Source-Retrieved', new Date(cache.retrievedAt).toISOString());
+      res.setHeader('X-GEV-Source-Stale', String(stale));
+      res.statusCode = 200; res.end(cache.xml);
+    });
+  }
+  return { name: 'sd511-public-feed-proxy', configureServer(server) { install(server.middlewares); },
+    configurePreviewServer(server) { install(server.middlewares); } };
+}
+
 /**
  * Main Vite configuration factory.
  *
@@ -7685,6 +7740,7 @@ export default defineConfig(({ mode }) => {
       terrainHeightsProxy(),
       adsbdbProxy(),
       overpassProxy(),
+      sd511Proxy(),
       militaryInstallationsProxy(),
       regionalBriefProxy(),
       weatherEffectsProxy(),
