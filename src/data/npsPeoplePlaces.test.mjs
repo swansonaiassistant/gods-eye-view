@@ -77,4 +77,6 @@ test('NPS proxy sends key in header only, caches success, retains stale data dur
   assert.equal(stale.status, 200);
   assert.equal(stale.body.state, 'stale');
   assert.equal(JSON.stringify(stale.body).includes('private upstream detail'), false);
+  assert.equal((await call(middleware, '/places?parkCode=moru')).body.state, 'stale');
+  assert.equal(calls, 2, 'outage cooldown avoids repeated upstream requests');
 });
