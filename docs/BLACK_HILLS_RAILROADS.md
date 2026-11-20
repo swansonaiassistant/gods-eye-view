@@ -13,10 +13,14 @@ OpenStreetMap coverage is incomplete and community-mapped geometries are not
 survey-verified. Do not infer that an empty area has no historic track, that a
 route remains passable, or that a highlighted line is publicly accessible.
 
-The overlay is opt-in, uses the existing bounded same-origin Overpass proxy
-with mirror failover and cache on enable, is also cached for the current page
-session, and does not poll continuously. If Overpass is
-unavailable, the layer must report UNAVAILABLE, not invent a route. Historical
+The overlay is opt-in and uses the existing bounded same-origin Overpass proxy.
+Historic rail queries prefer the documented free North America endpoint at
+https://ovp.dresel.systems/api-na/interpreter; two public mirrors remain as
+fallbacks. The proxy caches successful queries for 24 hours in memory and seven
+days on disk; the layer also keeps a page-session copy and does not poll. The
+operator has a four-parallel-request cap and no availability guarantee, so
+refreshing or mass querying must remain bounded. If every source is unavailable,
+the layer reports UNAVAILABLE and does not invent a route. Historical
 overlay lines are visual context, not driving/hiking directions.
 
 ### High-priority research / next import

@@ -155,8 +155,8 @@ function encode(state) {
 
 test('production registry is exact, canonical, and rejects incomplete contracts', async () => {
   assert.equal(validateLayerStateRegistry(), true);
-  assert.equal(REGISTERED_LAYER_IDS.length, 19);
-  assert.equal(new Set(REGISTERED_LAYER_IDS).size, 19);
+  assert.equal(REGISTERED_LAYER_IDS.length, 20);
+  assert.equal(new Set(REGISTERED_LAYER_IDS).size, 20);
   assert.deepEqual(REGISTERED_LAYER_IDS, [...REGISTERED_LAYER_IDS].sort());
   assert.throws(
     () => validateLayerStateRegistry([...LAYER_STATE_REGISTRY, LAYER_STATE_REGISTRY[0]]),
@@ -184,6 +184,11 @@ test('production registry is exact, canonical, and rejects incomplete contracts'
   assert.equal(qaManager.layers.has('radio'), true);
   assert.equal(await qaManager.unregisterForQa('radio'), true);
   assert.equal(qaManager.layers.has('radio'), false);
+});
+
+test('rail share token is distinct from the already published wildfire token', () => {
+  assert.deepEqual(decodeLayerStateParams(new URLSearchParams('v=2&l=h.j')).enabledLayerIds,
+    ['black-hills-railroads', 'black-hills-wildfires']);
 });
 
 test('v2 codec distinguishes absent from empty and keeps canonical deterministic ordering', () => {
@@ -223,8 +228,8 @@ test('v2 codec distinguishes absent from empty and keeps canonical deterministic
 });
 
 test('unknown enabled-layer tokens reject the payload instead of becoming an empty set', () => {
-  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=j')), null);
-  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=c.j')), null);
+  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=k')), null);
+  assert.equal(decodeLayerStateParams(new URLSearchParams('v=2&l=c.k')), null);
 });
 
 test('unknown and forbidden option fields are ignored while missing options use codec defaults', () => {
