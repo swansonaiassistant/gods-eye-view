@@ -28,6 +28,10 @@ import * as Cesium from 'cesium';
 export const DATA_CREDITS = [
   // ── Live sources ────────────────────────────────────────────────
   {
+    key: 'south-dakota-511',
+    html: 'Road reports: <a href="https://www.sd511.org/" target="_blank" rel="noopener">South Dakota DOT / SD511</a> (official route endpoints; source may lag)',
+  },
+  {
     key: 'black-hills-wildfires',
     html:
       'Black Hills reported fire incidents: ' +
@@ -77,6 +81,13 @@ export const DATA_CREDITS = [
     key: 'overpass',
     html:
       'Road geometry (traffic): ' +
+      '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> ' +
+      '(ODbL 1.0)',
+  },
+  {
+    key: 'black-hills-railroads-osm',
+    html:
+      'Black Hills historic railway ways (community mapped; incomplete): ' +
       '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> ' +
       '(ODbL 1.0)',
   },

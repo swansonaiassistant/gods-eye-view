@@ -1,5 +1,7 @@
 # God's Eye View Current State
 
+> **South Dakota 511 public reports (November 2026).** The opt-in layer reads the state-provided XML ZIP through a fixed same-origin proxy, with five-minute layer refresh and a 60-second server cache. It shows official route start/end pins and category filters for conditions, construction, closures, events, and restrictions; pins do not trace road paths. The feed contains no camera records, so the panel links to the official SD511 map. Report/update times remain distinct from feed retrieval time. Source outage shows stale retained records or unavailable on a cold load.
+
 > **Black Hills reported fire incidents (November 2026).** The opt-in layer
 > queries the current public NIFC-owned wildfire point service in a
 > bounded Black Hills study area every 15 minutes while enabled. It is separate
@@ -1588,6 +1590,7 @@ Historical planning documents may not match runtime behavior.
 - Voice map whiteboard annotations in `src/annotations/`
 - Opt-in Black Hills historic rail video research panel: one verified outbound YouTube link, three unsourced prompts, no geographic pins or hosted footage
 - Opt-in Black Hills 1857–1877 historical research panel with outbound source links; no route vectors, camps, or sensitive-site pins
+- Opt-in Black Hills historic railway overlay from OSM abandoned/disused/razed ways through the bounded same-origin Overpass proxy, preferring a free North America source with public mirror fallback; mapped coverage is incomplete and unavailable sources stay labeled
 - Opt-in Black Hills LiDAR discovery panel queries USGS 3DEP published point-cloud work units in a broad SD/WY study envelope, renders work-unit polygons, and lists collection/quality/publication metadata. It does not calculate a Black Hills coverage percentage or stream point clouds; source failures display unavailable or stale.
 - 3D aircraft/model tracking surfaces in `src/data/flights.js` and `src/data/militaryFlights.js`
 - Detection overlay and tracked-target readout in `src/data/detection.js`, `src/data/detectionDraw.js`, and `src/data/trackedReadout.js`

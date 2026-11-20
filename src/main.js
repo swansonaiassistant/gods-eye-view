@@ -15,6 +15,7 @@ import aisLiveVesselsLayer from './data/aisLiveVessels.js';
 import militaryInstallationsLayer from './data/militaryInstallations.js';
 import militaryAwarenessLayer from './data/militaryAwareness.js';
 import localDataLayers from './data/localLayers.js';
+import blackHillsRailroadsLayer from './data/blackHillsRailroads.js';
 import { rapidCityPoliceCallsLayer, penningtonCountyCallsLayer } from './data/publicCallLogs.js';
 import { initPublicCallLogPanel } from './data/publicCallLogsUi.js';
 import { LAYER_STATE_REGISTRY } from './data/layerState.js';
@@ -40,6 +41,8 @@ import { initKeySetup } from './keySetup.js';
 import { loadPhotorealisticTileset } from './mapStartup.js';
 import { initBlackHillsLidarPanel } from './data/blackHillsLidarPanel.js';
 import { initNpsPeoplePlacesPanel } from './data/npsPeoplePlacesPanel.js';
+import sd511Layer from './data/sd511Layer.js';
+import { initSd511Panel } from './data/sd511Panel.js';
 
 initLogoGaze();
 
@@ -229,6 +232,7 @@ async function init() {
     dataManager.register(rapidCityPoliceCallsLayer);
     dataManager.register(penningtonCountyCallsLayer);
     militaryAwarenessLayer.attachDataManager(dataManager);
+    dataManager.register(blackHillsRailroadsLayer);
     for (const layer of localDataLayers) {
       dataManager.register(layer);
     }
@@ -251,6 +255,7 @@ async function init() {
     styleManager.attachDataManager(dataManager);
     initBlackHillsLidarPanel(viewer);
     initNpsPeoplePlacesPanel(viewer);
+    initSd511Panel(viewer, dataManager, sd511Layer);
 
     // Initialize deterministic scene playback for social clip capture
     const sceneDirector = new SceneDirector(viewer, styleManager, dataManager);

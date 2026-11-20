@@ -59,10 +59,10 @@ test('share links parse explicit celestial on and off states', () => {
 });
 
 test('unknown-only v2 layer tokens are invalid, while historical l fields stay inert', () => {
-  const invalid = makeManager('#v=2&lat=10&lon=20&l=j').parseInitialHash();
+  const invalid = makeManager('#v=2&lat=10&lon=20&l=0').parseInitialHash();
   assert.equal(invalid.layerState, null);
   assert.equal(invalid.layerStateInvalid, true);
-  for (const hash of ['#lat=10&lon=20&l=j', '#v=1&lat=10&lon=20&l=j']) {
+  for (const hash of ['#lat=10&lon=20&l=0', '#v=1&lat=10&lon=20&l=0']) {
     const legacy = makeManager(hash).parseInitialHash();
     assert.equal(legacy.layerState, null);
     assert.equal(legacy.layerStateInvalid, false);

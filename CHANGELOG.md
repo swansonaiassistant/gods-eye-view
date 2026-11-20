@@ -6,10 +6,13 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 ## [Unreleased]
 
 - Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
+- Add opt-in South Dakota 511 public XML road reports with category and region filters, manual refresh, official route endpoints, source timestamps, and honest outage state. The public ZIP has no cameras or road-path geometry.
+
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state.
 
 ### Added
 
+- An opt-in Black Hills historic railway overlay from community-mapped OSM tags through the app's bounded Overpass proxy, with a verified free North America source and public fallback; unavailable sources remain labeled, and no custom map geometry is reproduced.
 - An opt-in Black Hills reported fire incident point layer from the NIFC-owned public IRWIN service, separate from NASA FIRMS detections. It distinguishes prescribed burns, preserves empty and outage states, and labels points as approximate reported locations.
 - An opt-in sourced Black Hills 1857–1877 research timeline panel; no expedition route, camp, or sensitive-site coordinates are drawn.
 - An opt-in Black Hills historic rail video research panel with one verified outbound Signal Rock YouTube link and three clearly unsourced research prompts. No footage is copied or geotagged.
