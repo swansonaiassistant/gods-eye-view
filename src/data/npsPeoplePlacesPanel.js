@@ -7,7 +7,7 @@ const PARK_LABELS = Object.freeze({ moru: 'Mount Rushmore', wica: 'Wind Cave', j
 export async function fetchNpsProfiles(kind, parkCode, { signal } = {}) {
   if (!['people', 'places'].includes(kind) || !NPS_PEOPLE_PLACES.parkCodes.includes(parkCode)) throw new Error('Invalid NPS selection');
   const response = await fetch(`/api/nps/${kind}?parkCode=${encodeURIComponent(parkCode)}`, { signal, credentials: 'same-origin' });
-  const payload = await response.json();
+  const payload = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(payload?.error === 'nps_key_required' ? 'NPS API key required on this workstation' : 'NPS source unavailable');
   if (!Array.isArray(payload.records)) throw new Error('Invalid NPS response');
   return payload;
