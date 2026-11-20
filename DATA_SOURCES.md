@@ -60,9 +60,10 @@ How to read this:
 
 | Source | Intended use | Rights / status | Attribution if activated |
 |--------|--------------|-----------------|--------------------------|
+| [City of Rapid City PublicRapidMap](https://gis.rcgov.org/server/rest/services/PublicSites/PublicRapidMap/MapServer) | Bounded roads, contours, parcel outlines, and city boundaries | Public ArcGIS REST queries work. The City's [GIS Data page](https://www.rcgov.org/departments/public-works/geographic-information-system/gis-data-216.html) discusses distribution of **printed maps** with City credit; digital reuse terms remain unverified. PR #8 only builds URLs and fetches no records | City of Rapid City GIS Division; parcel outlines are reference geography, not a legal survey |
 | [USGS Historical Topographic Map Collection](https://www.usgs.gov/programs/national-geospatial-program/historical-topographic-maps-preserving-past) via [TNMAccess](https://tnmaccess.nationalmap.gov/api/v1/products) | Bounded historical map catalog and future georeferenced imagery | [USGS says historical topo maps are public domain](https://www.usgs.gov/faqs/are-usgs-topographic-maps-copyrighted); PR #9 queries metadata only and does not fetch or bundle map files | Acknowledge the U.S. Geological Survey and identify each sheet's publication year |
 
-Do not add a candidate to the in-app `DATA_CREDITS` list until an actual layer fetches and displays it. Show source and date in the app before activating a candidate.
+Do not add a candidate to the in-app `DATA_CREDITS` list until an actual layer fetches and displays it. Verify source terms, show source/date as relevant, and display the matching credit before activating a candidate.
 
 ---
 
