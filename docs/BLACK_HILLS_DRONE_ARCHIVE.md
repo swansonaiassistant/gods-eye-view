@@ -7,13 +7,16 @@ on YouTube in a separate tab.
 ## Research candidates
 
 - Signal Rock / Elk Creek / Piedmont: prior-conversation candidate YouTube ID
-  `NdKwv8Nmaw0`; **not independently verified in this PR**.
+  `NdKwv8Nmaw0`; YouTube's official oEmbed endpoint returned title **Signal Rock**
+  and uploader **Black Hills Industrial History** on 2026-11-19. This verifies
+  link availability and uploader only; filming place, date, flight path and
+  permission to reproduce footage remain unverified.
 - Elk Creek Canyon: source link and uploader not confirmed.
 - Calcite: source link and uploader not confirmed.
 - Stagebarn: source link and uploader not confirmed.
 
-All four were recalled in conversation, not independently checked. Do not
-present them as a verified creator playlist or assume the precise locations.
+Three locations remain unsourced research prompts. Do not present them as a
+verified creator playlist or assume precise filming locations.
 
 ## Why locations aren't pinned yet
 
@@ -35,5 +38,6 @@ historic alignment is survey-accurate.
 - `npm test` and `npm run build`
 - Browser: panel open/close, accessible expanded state, outbound link safety,
   mobile layout, collision with existing controls.
-- Check candidate video availability and identify the creator before making
-  this PR ready to merge.
+- Signal Rock link and uploader checked via YouTube oEmbed on 2026-11-19;
+  recheck periodically because external videos can disappear. Remaining sites
+  need original URLs and creators before they receive playable links.

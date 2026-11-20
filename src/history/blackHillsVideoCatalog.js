@@ -1,18 +1,20 @@
-// Research queue, not a claim that any source has been independently verified.
-// Preserve candidate locations without inventing GPS coordinates or channel names.
+// Research queue: verify outbound links independently from filming location.
+// Preserve candidate locations without inventing GPS coordinates.
 export const BLACK_HILLS_DRONE_VIDEOS = Object.freeze([
   Object.freeze({
     id: 'signal-rock',
     place: 'Signal Rock',
-    corridor: 'Elk Creek / Piedmont',
+    corridor: 'Candidate area (unverified): Elk Creek / Piedmont',
     youtubeId: 'NdKwv8Nmaw0',
-    verification: 'unverified-link',
-    notes: 'Candidate from prior research conversation; confirm uploader, footage and exact site before geotagging.',
+    title: 'Signal Rock',
+    uploader: 'Black Hills Industrial History',
+    verification: 'link-and-uploader-verified',
+    notes: 'YouTube oEmbed confirms title and uploader; filming site, flight path, date and reuse rights remain unverified.',
   }),
   Object.freeze({
     id: 'elk-creek-canyon',
     place: 'Elk Creek Canyon',
-    corridor: 'Piedmont / northern Black Hills',
+    corridor: 'Candidate area (unverified): Piedmont / northern Black Hills',
     youtubeId: null,
     verification: 'needs-source',
     notes: 'Video title and location are provisional; find original upload.',
@@ -20,7 +22,7 @@ export const BLACK_HILLS_DRONE_VIDEOS = Object.freeze([
   Object.freeze({
     id: 'calcite',
     place: 'Calcite',
-    corridor: 'Black Hills & Fort Pierre historic network',
+    corridor: 'Candidate area (unverified): Black Hills & Fort Pierre historic network',
     youtubeId: null,
     verification: 'needs-source',
     notes: 'Candidate remembered from prior discussion; confirm location and upload.',
@@ -28,7 +30,7 @@ export const BLACK_HILLS_DRONE_VIDEOS = Object.freeze([
   Object.freeze({
     id: 'stagebarn',
     place: 'Stagebarn',
-    corridor: 'Northern Black Hills',
+    corridor: 'Candidate area (unverified): Northern Black Hills',
     youtubeId: null,
     verification: 'needs-source',
     notes: 'Candidate remembered from prior discussion; confirm location and upload.',

@@ -12,19 +12,20 @@ export function initBlackHillsVideoArchive({ documentRef = document } = {}) {
   toggle.textContent = 'HISTORIC RAIL VIDEOS';
   toggle.setAttribute('aria-controls', 'gev-black-hills-video-archive');
   toggle.setAttribute('aria-expanded', 'false');
-  toggle.style.cssText = 'position:fixed;right:16px;bottom:70px;z-index:1100;background:#14232c;color:#fff;border:1px solid #b89155;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
+  toggle.style.cssText = 'position:fixed;right:16px;bottom:70px;z-index:110;background:#14232c;color:#fff;border:1px solid #b89155;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
 
   const panel = documentRef.createElement('aside');
   panel.id = 'gev-black-hills-video-archive';
   panel.hidden = true;
+  panel.setAttribute('data-gev-research-panel', '');
   panel.setAttribute('aria-label', 'Black Hills historic railroad drone video research archive');
-  panel.style.cssText = 'position:fixed;right:16px;bottom:112px;z-index:1100;width:min(390px,calc(100vw - 32px));max-height:55vh;overflow:auto;background:#10202beF;color:#fff;border:1px solid #b89155;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
+  panel.style.cssText = 'position:fixed;right:16px;bottom:112px;z-index:110;width:min(390px,calc(100vw - 32px));max-height:55vh;overflow:auto;background:#10202beF;color:#fff;border:1px solid #b89155;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
 
   const heading = documentRef.createElement('h2');
   heading.textContent = 'Black Hills Railroad Drone Archive';
   heading.style.cssText = 'font-size:16px;margin:0 0 6px';
   const notice = documentRef.createElement('p');
-  notice.textContent = 'Research candidates only. Videos and locations are not yet independently verified or geotagged.';
+  notice.textContent = 'One outbound video link and uploader are verified. Filming locations and the other candidate sources remain unverified; no items are geotagged.';
   notice.style.cssText = 'opacity:.8;margin:0 0 12px';
   panel.append(heading, notice);
 
@@ -34,14 +35,15 @@ export function initBlackHillsVideoArchive({ documentRef = document } = {}) {
     const title = documentRef.createElement('strong');
     title.textContent = video.place;
     const description = documentRef.createElement('div');
-    description.textContent = video.corridor + ' · ' + (video.youtubeId ? 'Candidate link — verify' : 'Video link needed');
+    description.textContent = video.corridor + ' · ' + (video.verification === 'link-and-uploader-verified'
+      ? `YouTube source: ${video.uploader}; filming site unverified` : 'Video link needed');
     description.style.opacity = '.75';
     item.append(title, description);
     const url = youtubeWatchUrl(video.youtubeId);
     if (url) {
       const link = documentRef.createElement('a');
       link.href = url;
-      link.textContent = 'Open candidate on YouTube';
+      link.textContent = 'Open on YouTube';
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.style.cssText = 'color:#f6b75c;text-decoration:underline';
@@ -51,6 +53,13 @@ export function initBlackHillsVideoArchive({ documentRef = document } = {}) {
   }
 
   toggle.addEventListener('click', () => {
+    if (panel.hidden) {
+      for (const other of documentRef.querySelectorAll('[data-gev-research-panel]')) {
+        if (other === panel) continue;
+        other.hidden = true;
+        documentRef.querySelector(`[aria-controls="${other.id}"]`)?.setAttribute('aria-expanded', 'false');
+      }
+    }
     panel.hidden = !panel.hidden;
     toggle.setAttribute('aria-expanded', String(!panel.hidden));
   });

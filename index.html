@@ -583,9 +583,25 @@
         <span class="panel-divider"></span>
         <button class="panel-collapse-btn" data-collapse-target="data-panel" title="Collapse panel">+</button>
       </div>
+      <button id="call-log-open" class="call-log-open" type="button" aria-controls="public-call-log-panel" aria-expanded="false">PUBLIC CALL LOGS</button>
       <div id="data-toggles" class="data-toggle-list"></div>
     </div>
   </div>
+
+  <section id="public-call-log-panel" class="public-call-log-panel" aria-label="Public calls for service" hidden>
+    <header class="call-log-header"><strong>PUBLIC CALLS FOR SERVICE</strong><button id="call-log-close" type="button" aria-label="Close public call log">×</button></header>
+    <p class="call-log-caution">Public calls are not confirmed crimes or live dispatch. Locations are approximate. Locate uses Google Maps quota only when clicked.</p>
+    <div class="call-log-tabs" role="group" aria-label="Call log source">
+      <button id="call-log-rapid" type="button">RAPID CITY POLICE</button>
+      <button id="call-log-county" type="button">PENNINGTON SHERIFF</button>
+    </div>
+    <div id="call-log-status" class="call-log-status" role="status" aria-live="polite"></div>
+    <div class="call-log-actions"><button id="call-log-enable" type="button">ENABLE LAYER</button><button id="call-log-refresh" type="button">REFRESH SOURCE</button></div>
+    <div class="call-log-filters"><label>Search <input id="call-log-search" type="search" placeholder="Type, street, CFS #" /></label><label>Reported <select id="call-log-age"><option value="all">Loaded window</option><option value="24">Past 24 hours</option><option value="48">Past 48 hours</option></select></label></div>
+    <div id="call-log-summary" class="call-log-summary"></div>
+    <div id="call-log-list" class="call-log-list" role="list"></div>
+    <a id="call-log-source" target="_blank" rel="noopener noreferrer">OPEN OFFICIAL SOURCE ↗</a>
+  </section>
 
   <!-- CCTV Coverage Panel -->
   <div id="cctv-panel" class="panel-collapsible collapsed" data-panel-id="cctv-panel">
