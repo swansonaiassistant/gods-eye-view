@@ -11,7 +11,7 @@ export const SD511_SOURCE = Object.freeze({
   camerasAvailableInFeed: false,
 });
 
-const CATEGORIES = new Set(['conditions', 'closure', 'construction', 'restrictions', 'vehicle_restrictions', 'event']);
+const CATEGORIES = new Set(['conditions', 'closure', 'construction', 'restrictions', 'vehicle_restrictions', 'event', 'incident']);
 const direct = (node, name) => node && [...node.children].find((child) => child.tagName === name) || null;
 const text = (node, name) => direct(node, name)?.textContent?.trim() || '';
 const children = (node, name) => node ? [...node.children].filter((child) => child.tagName === name) : [];

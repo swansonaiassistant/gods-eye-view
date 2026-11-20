@@ -19,3 +19,8 @@ test('rejects missing route, invalid positions, unsupported categories and fake 
   assert.equal(normalizeRoadEvent({ ...valid, categories: ['camera'] }), null);
   assert.equal(normalizeRoadEvent({ ...valid, id: '<script>' }), null);
 });
+
+test('accepts incident reports only when supplied by the official feed', () => {
+  const result = normalizeRoadEvent({ ...valid, categories: ['incident'] });
+  assert.deepEqual(result.categories, ['incident']);
+});

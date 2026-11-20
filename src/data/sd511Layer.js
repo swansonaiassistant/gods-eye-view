@@ -2,7 +2,7 @@ import * as Cesium from 'cesium';
 import { SD511_SOURCE, parseSd511Xml } from './sd511Source.js';
 
 const COLORS = Object.freeze({ closure: Cesium.Color.ORANGERED, conditions: Cesium.Color.CYAN,
-  construction: Cesium.Color.YELLOW, event: Cesium.Color.MAGENTA,
+  construction: Cesium.Color.YELLOW, event: Cesium.Color.MAGENTA, incident: Cesium.Color.ORANGERED,
   restrictions: Cesium.Color.ORANGE, vehicle_restrictions: Cesium.Color.ORANGE });
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',

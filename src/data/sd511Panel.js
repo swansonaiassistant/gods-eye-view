@@ -33,7 +33,7 @@ export function initSd511Panel(viewer, dataManager, layer, doc = document) {
   }
   const filter = doc.createElement('select'); filter.setAttribute('aria-label', 'SD511 report category');
   for (const [value, label] of [['all', 'All reports'], ['closure', 'Closures'],
-    ['conditions', 'Conditions'], ['construction', 'Construction'], ['event', 'Events'],
+    ['conditions', 'Conditions'], ['construction', 'Construction'], ['event', 'Events'], ['incident', 'Incidents'],
     ['restrictions', 'Restrictions']]) {
     const option = doc.createElement('option'); option.value = value; option.textContent = label; filter.append(option);
   }
