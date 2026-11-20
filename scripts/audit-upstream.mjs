@@ -2,11 +2,15 @@ import { execFileSync } from 'node:child_process';
 
 /** Read-only fork/upstream drift report. This never fetches, merges or resets. */
 function git(...args) {
-  try { return execFileSync('git', args, { encoding: 'utf8', timeout: 15000 }).trim(); }
+  try { return execFileSync('git', args, { encoding: 'utf8', timeout: 15000, stdio: ['ignore', 'pipe', 'pipe'] }).trim(); }
   catch (error) { return { error: String(error.message || error) }; }
 }
+function redactRemoteCredentials(remotes) {
+  if (typeof remotes !== 'string') return remotes;
+  return remotes.replace(/(https?:\/\/)[^\s/@]+@/gi, '$1[redacted]@');
+}
 export function auditUpstream() {
-  const remotes = git('remote', '-v');
+  const remotes = redactRemoteCredentials(git('remote', '-v'));
   const branch = git('branch', '--show-current');
   const status = git('status', '--porcelain=v1');
   const upstream = git('rev-parse', '--verify', 'upstream/main');
@@ -14,6 +18,11 @@ export function auditUpstream() {
   const drift = typeof upstream === 'string' && typeof origin === 'string'
     ? git('rev-list', '--left-right', '--count', 'origin/main...upstream/main')
     : { error: 'Missing origin/main or upstream/main; configure/fetch remotes manually' };
-  return { branch, remotes, localChanges: status, upstream, origin, drift, note: 'No upstream changes have been merged' };
+  const ok = [remotes, branch, status, upstream, origin, drift].every((value) => typeof value === 'string');
+  return { ok, branch, remotes, localChanges: status, upstream, origin, drift, note: 'This audit does not merge upstream changes' };
 }
-if (process.argv[1]?.endsWith('audit-upstream.mjs')) console.log(JSON.stringify(auditUpstream(), null, 2));
+if (process.argv[1]?.endsWith('audit-upstream.mjs')) {
+  const report = auditUpstream();
+  console.log(JSON.stringify(report, null, 2));
+  if (!report.ok) process.exitCode = 1;
+}
