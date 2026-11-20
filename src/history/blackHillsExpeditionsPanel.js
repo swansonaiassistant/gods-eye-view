@@ -8,12 +8,13 @@ export function initBlackHillsExpeditionsPanel(doc = document) {
   button.textContent='BLACK HILLS 1800s';
   button.setAttribute('aria-controls','gev-historic-expeditions');
   button.setAttribute('aria-expanded','false');
-  button.style.cssText='position:fixed;right:16px;bottom:114px;z-index:1099;background:#14232c;color:#fff;border:1px solid #b89155;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
+  button.style.cssText='position:fixed;right:190px;bottom:70px;z-index:109;max-width:calc(100vw - 200px);white-space:normal;background:#14232c;color:#fff;border:1px solid #b89155;border-radius:6px;padding:9px 12px;font:12px monospace;cursor:pointer';
   const panel=doc.createElement('aside');
   panel.id='gev-historic-expeditions';
   panel.hidden=true;
+  panel.setAttribute('data-gev-research-panel','');
   panel.setAttribute('aria-label','Historical Black Hills expeditions and conflicts');
-  panel.style.cssText='position:fixed;right:16px;bottom:156px;z-index:1099;width:min(420px,calc(100vw - 32px));max-height:55vh;overflow:auto;background:#10202bef;color:#fff;border:1px solid #b89155;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
+  panel.style.cssText='position:fixed;right:16px;bottom:112px;z-index:109;width:min(420px,calc(100vw - 32px));max-height:55vh;overflow:auto;background:#10202bef;color:#fff;border:1px solid #b89155;border-radius:8px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 10px 35px #0009';
   const h=doc.createElement('h2');h.textContent='Black Hills Expeditions, 1857–1877';h.style.cssText='font-size:16px;margin:0 0 6px';panel.append(h);
   const notice=doc.createElement('p');notice.textContent='Research timeline — geographic routes and camp positions await source-map georeferencing. Includes events beyond the Black Hills.';panel.append(notice);
   for(const [heading,items] of [['Expeditions and surveys',EXPEDITIONS],['Engagements',ENGAGEMENTS],['Historical context',HISTORICAL_CONTEXT]]){
@@ -31,7 +32,17 @@ export function initBlackHillsExpeditionsPanel(doc = document) {
     }
     panel.append(section);
   }
-  button.addEventListener('click',()=>{panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));});
+  button.addEventListener('click',()=>{
+    if(panel.hidden){
+      for(const other of doc.querySelectorAll('[data-gev-research-panel]')){
+        if(other===panel) continue;
+        other.hidden=true;
+        doc.querySelector(`[aria-controls="${other.id}"]`)?.setAttribute('aria-expanded','false');
+      }
+    }
+    panel.hidden=!panel.hidden;
+    button.setAttribute('aria-expanded',String(!panel.hidden));
+  });
   doc.body.append(button,panel);
   return ()=>{button.remove();panel.remove();};
 }

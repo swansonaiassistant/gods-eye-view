@@ -6,8 +6,8 @@ Interactive, sourced historical reconstruction covering exploration, military
 movements, mining-era surveys, Lakota and Cheyenne history, and engagements
 associated with the Black Hills between roughly 1857 and 1877.
 
-The initial panel provides a **documented research timeline**, not actual
-track reconstruction. No invented routes, fort sites, skirmish locations,
+The initial panel provides a **documented research timeline** with outbound
+source links only, not actual track reconstruction or copied source imagery. No invented routes, fort sites, skirmish locations,
 or encampment coordinates may be added to the globe.
 
 ### Priority archival materials
@@ -15,18 +15,22 @@ or encampment coordinates may be added to the globe.
 1. William Ludlow's original 1874 Custer reconnaissance map, showing dated
    expedition paths and encampments:
    https://www.loc.gov/item/73697038/
-2. USD historical map inventory (also references Warren 1857 and **William F.
-   Raynolds 1859**): 
-   https://readingroom.usd.edu/post/south-dakota-and-northern-great-plains-historical-maps
+2. NPS First Explorers account, identifying Warren 1857, **William F. Raynolds
+   1859**, and Dodge/Newton 1875; USGS documents the 1859–60 Raynolds span:
+   https://www.nps.gov/deto/learn/historyculture/early-exploration.htm
+   https://pubs.usgs.gov/bul/1027b/report.pdf
 3. NPS Great Sioux War overview, timeline, and 1876 engagement sites:
    https://www.nps.gov/articles/000/fort-laramie-in-1876.htm
 4. NPS indigenous perspectives:
-   https://home.nps.gov/articles/000/fighting-for-the-black-hills-understanding-indigenous-perspectives-on-the-great-sioux-war-of-1876-1877.htm
+   https://www.nps.gov/articles/000/fighting-for-the-black-hills-understanding-indigenous-perspectives-on-the-great-sioux-war-of-1876-1877.htm
 5. National Archives Fort Laramie Treaty context:
    https://www.archives.gov/education/lessons/sioux-treaty
 
 **Do not confuse** Captain William F. Raynolds' 1859–60 reconnaissance with
-Colonel Joseph J. Reynolds' March 1876 campaign.
+Colonel Joseph J. Reynolds' March 1876 campaign. The South Dakota state
+archive catalog identifies Reynolds in the Powder River action; the NPS Fort
+Laramie timeline dates that battle March 17. The South Dakota National Register
+record dates Slim Buttes September 8–9, and NPS dates Little Bighorn June 25–26.
 
 ## Interpretation standards
 
