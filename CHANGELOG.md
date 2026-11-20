@@ -5,6 +5,8 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 
 ## [Unreleased]
 
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state.
+
 ### Added
 
 - An opt-in Black Hills reported fire incident point layer from the NIFC-owned public IRWIN service, separate from NASA FIRMS detections. It distinguishes prescribed burns, preserves empty and outage states, and labels points as approximate reported locations.
@@ -78,7 +80,9 @@ The dated entries and internal milestone numbers below predate the first
 tagged GitHub Release. They are retained as project history and do not
 represent previously published GitHub Releases.
 
-## [Unreleased] — 2026-08-24
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-24
 
 ### Added
 
@@ -126,7 +130,9 @@ represent previously published GitHub Releases.
 - Production dependency audit reports no known advisories; remaining audit
   findings are confined to development and QA tooling.
 
-## [Unreleased] — 2026-08-23
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-23
 
 ### Added
 
@@ -143,7 +149,9 @@ represent previously published GitHub Releases.
   stable across headings, with minor hull overlap allowed and no conspicuous
   top, bottom, or lateral projection.
 
-## [Unreleased] — 2026-08-18 to 2026-08-22
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-18 to 2026-08-22
 
 ### Added
 
@@ -171,7 +179,9 @@ represent previously published GitHub Releases.
 - Fixed stale overlay callbacks, parked-idle render leaks, cable-label sweep
   starvation, and several share-link state conflicts.
 
-## [Unreleased] — 2026-08-02 to 2026-08-16
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-02 to 2026-08-16
 
 ### Added
 
@@ -189,7 +199,9 @@ represent previously published GitHub Releases.
 - Improved proxy resilience, annotation outline bounds, CCTV enable pacing,
   contact de-emphasis, and deterministic visual stacking.
 
-## [Unreleased] — July 2026
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — July 2026
 
 ### Added
 
@@ -207,7 +219,9 @@ represent previously published GitHub Releases.
   close-zoom FIRMS anchors, antimeridian region framing, annotation resolution,
   cross-layer tracking ownership, and CCTV projection lifecycle issues.
 
-## [Unreleased] — June 2026
+## [Unreleased]
+
+- Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — June 2026
 
 ### Added
 

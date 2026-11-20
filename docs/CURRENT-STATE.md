@@ -1588,6 +1588,7 @@ Historical planning documents may not match runtime behavior.
 - Voice map whiteboard annotations in `src/annotations/`
 - Opt-in Black Hills historic rail video research panel: one verified outbound YouTube link, three unsourced prompts, no geographic pins or hosted footage
 - Opt-in Black Hills 1857–1877 historical research panel with outbound source links; no route vectors, camps, or sensitive-site pins
+- Opt-in Black Hills LiDAR discovery panel queries USGS 3DEP published point-cloud work units in a broad SD/WY study envelope, renders work-unit polygons, and lists collection/quality/publication metadata. It does not calculate a Black Hills coverage percentage or stream point clouds; source failures display unavailable or stale.
 - 3D aircraft/model tracking surfaces in `src/data/flights.js` and `src/data/militaryFlights.js`
 - Detection overlay and tracked-target readout in `src/data/detection.js`, `src/data/detectionDraw.js`, and `src/data/trackedReadout.js`
 - Proxy middleware and API wiring in `vite.config.js`
