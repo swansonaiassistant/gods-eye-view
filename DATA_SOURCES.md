@@ -57,6 +57,16 @@ How to read this:
 
 ---
 
+## Candidate sources (discovery only; no in-app fetch)
+
+| Source | Intended use | Rights / status | Attribution if activated |
+|--------|--------------|-----------------|--------------------------|
+| [USGS Historical Topographic Map Collection](https://www.usgs.gov/programs/national-geospatial-program/historical-topographic-maps-preserving-past) via [TNMAccess](https://tnmaccess.nationalmap.gov/api/v1/products) | Bounded historical map catalog and future georeferenced imagery | [USGS says historical topo maps are public domain](https://www.usgs.gov/faqs/are-usgs-topographic-maps-copyrighted); PR #9 queries metadata only and does not fetch or bundle map files | Acknowledge the U.S. Geological Survey and identify each sheet's publication year |
+
+Do not add a candidate to the in-app `DATA_CREDITS` list until an actual layer fetches and displays it. Show source and date in the app before activating a candidate.
+
+---
+
 ## Bundled snapshots (committed under `src/data/local_data/`)
 
 Static datasets shipped in the repo for an out-of-the-box experience. **None are MIT** — each keeps its own license (see the carve-out in [LICENSE](LICENSE)). Each folder also has its own provenance README.
