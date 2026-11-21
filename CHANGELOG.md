@@ -5,6 +5,7 @@ of current runtime behavior, see [`docs/CURRENT-STATE.md`](docs/CURRENT-STATE.md
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in South Dakota 511 public XML road reports with category and region filters, manual refresh, official route endpoints, source timestamps, and honest outage state. The public ZIP has no cameras or road-path geometry.
 
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state.
@@ -85,6 +86,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-24
 
 ### Added
@@ -135,6 +137,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-23
 
 ### Added
@@ -154,6 +157,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-18 to 2026-08-22
 
 ### Added
@@ -184,6 +188,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — 2026-08-02 to 2026-08-16
 
 ### Added
@@ -204,6 +209,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — July 2026
 
 ### Added
@@ -224,6 +230,7 @@ represent previously published GitHub Releases.
 
 ## [Unreleased]
 
+- Add draft opt-in NPS People & Places panel with server-only key handling, source-cited editorial cards, and cautious place pins. Live NPS content remains unavailable until a key is configured.
 - Add opt-in USGS 3DEP published LiDAR work-unit discovery for the broad Black Hills study area, with footprints, metadata, refresh, and honest outage state. — June 2026
 
 ### Added

@@ -9546,3 +9546,23 @@ body.scene-playback-mode #key-setup {
 .call-log-locate { margin-top: 4px; }
 #call-log-source { color: #80deff; align-self: flex-start; }
 @media (max-width: 800px) { .public-call-log-panel { left: 3vw; top: 5vh; width: 94vw; height: 89vh; } }
+
+/* Keep the NPS and SD511 research controls reachable above the mobile HUD. */
+@media (max-width: 600px) {
+  button[aria-controls="gev-nps-people-places"] {
+    right: 148px !important;
+    bottom: 326px !important;
+    z-index: 120 !important;
+  }
+  button[aria-controls="gev-sd511-panel"] {
+    right: 16px !important;
+    bottom: 326px !important;
+    z-index: 120 !important;
+  }
+  #gev-nps-people-places,
+  #gev-sd511-panel {
+    bottom: 370px !important;
+    max-height: min(45vh, calc(100vh - 390px)) !important;
+    z-index: 119 !important;
+  }
+}

@@ -332,3 +332,19 @@ test('validation rejects dotenv metacharacters that would round-trip wrong', () 
     assert.equal(validateKeySetupUpdates({ OPENAI_API_KEY: good }).ok, true, `${good} accepted`);
   }
 });
+
+test('NPS API key is a server-side provider in Power Up with safe save/remove and no secret exposure', () => {
+  const nps = KEY_SETUP_KEYS.find((entry) => entry.id === 'nps');
+  assert.equal(nps.title, 'NATIONAL PARK SERVICE');
+  assert.deepEqual([...nps.envVars], ['NPS_API_KEY']);
+  assert.equal(nps.tier, 'free');
+  assert.notEqual(nps.clientExposed, true);
+  assert.ok(knownKeySetupEnvVars().has('NPS_API_KEY'));
+  const value = 'privateNPS0123456789abcd';
+  const check = validateKeySetupUpdates({ NPS_API_KEY: value });
+  assert.deepEqual(check, { ok: true, updates: { NPS_API_KEY: value } });
+  assert.equal(upsertDotenvValues('NPS_API_KEY=\n', check.updates), 'NPS_API_KEY=' + value + '\n');
+  assert.equal(keySetupStatus({ NPS_API_KEY: value }).keys.find((entry) => entry.id === 'nps').set, true);
+  assert.ok(!JSON.stringify(keySetupStatus({ NPS_API_KEY: value })).includes(value));
+  assert.equal(upsertDotenvValues('NPS_API_KEY=' + value + '\n', { NPS_API_KEY: null }), '# NPS_API_KEY=\n');
+});
